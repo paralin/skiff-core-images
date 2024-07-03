@@ -17,7 +17,7 @@ if [ -z "$USE_DOCKER_BUILD" ]; then
 	echo "Using buildx to build and push the image..."
 	docker buildx build \
 		--push \
-		--tag $IMAGE_TAG \
+		--tag ${IMAGE_NAME}:${IMAGE_TAG} \
 		--output=type=image,push=true,oci-mediatypes=false \
 		--platform linux/amd64,linux/arm,linux/arm64,linux/riscv64 \
 		-f Dockerfile \
@@ -66,6 +66,6 @@ else
 
 	# Create and push the manifest
 	echo "Creating and pushing the manifest..."
-	docker manifest create --amend ${IMAGE_NAME}:latest ${ARCH_IMAGES[@]}
-	docker manifest push --purge ${IMAGE_NAME}:latest
+	docker manifest create --amend ${IMAGE_NAME}:${IMAGE_TAG} ${ARCH_IMAGES[@]}
+	docker manifest push --purge ${IMAGE_NAME}:${IMAGE_TAG}
 fi
