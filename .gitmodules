@@ -1,3 +1,6 @@
 [submodule "skiffos"]
 	path = skiffos
 	url = https://github.com/skiffos/skiffos
+[submodule "docker-nixos"]
+	path = docker-nixos
+	url = https://github.com/paralin/docker-nixos
